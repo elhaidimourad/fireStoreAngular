@@ -1,0 +1,67 @@
+<br/>
+<div class="row" *ngIf="formStatus">
+  <div class="col s12">
+  <form [formGroup]="form" (ngSubmit)="addContact()">
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fa fa-user prefix fa-lg blue-text "></i>
+        <input formControlName="fullName" id="fullname" type="text" class="validate" >
+        <label for="fullname">Full Name</label>
+      </div>
+      <div *ngIf="f.fullName.touched && f.fullName.invalid" >
+        <div class="text-red" *ngIf="f.fullName.errors.required">
+          fullName is required.
+        </div>
+        <div *ngIf="f.fullName.errors.minlength">
+          fullName should be 3 character.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fa fa-phone prefix fa-lg blue-text "></i>
+        <input formControlName="phone" id="phone" type="number" class="validate">
+        <label for="phone">Phone Number</label>
+      </div>
+      <div *ngIf="f.phone.touched && f.phone.invalid">
+        <div *ngIf="f.phone.errors.required">
+          Phone is required.
+        </div>
+        <div *ngIf="f.phone.errors.maxlength">
+          Phone should be 10 character.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fa fa-envelope prefix fa-lg blue-text "></i>
+        <input formControlName="email" id="email" type="email" class="validate"  >
+        <label for="email">Email</label>
+      </div>
+      <div *ngIf="f.email.touched && f.email.invalid" >
+        <div *ngIf="f.email.errors.required">
+          Email is required.
+        </div>
+        <div *ngIf="f.email.errors.email">
+          Please, enter valid email address.
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-large teal" type="submit" [disabled]="!form.valid">
+      Add contact
+    </button>
+    <a class="btn-floating btn-large waves-effect waves-light red">
+      <i (click)="closeForm()" class="large fa fa-close"></i></a>
+  
+  </form>
+  
+  </div>
+</div>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light red" (click)="openForm()">
+    <i class="large fa fa-plus"></i></a>
+</div>

@@ -1,0 +1,58 @@
+<br />
+<div class="row" *ngIf="formStatus">
+  <div class="col s12">
+    <form (ngSubmit)="editMyContact()">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fa fa-user prefix fa-lg blue-text "></i>
+          <input id="fullname" type="text" class="validate" [(ngModel)]="myContact.fullName" name="fullName">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fa fa-phone prefix fa-lg blue-text "></i>
+          <input id="phone" type="number" class="validate" [(ngModel)]="myContact.phone" name="phone">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col md-4 s12">
+          <i class="fa fa-envelope prefix fa-lg blue-text "></i>
+          <input id="email" type="email" class="validate" [(ngModel)]="myContact.email" name="email">
+         
+        </div>
+      </div>
+
+      <button class="btn-large orange" type="submit">
+        Update contact
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+
+
+<table class="striped" *ngIf="contacts?.length > 0; else noContacts">
+  <thead>
+    <tr>
+      <th> Full Name  </th>
+      <th> Phone Number</th>
+      <th> Email Address </th>
+      <th> Actions </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let contact of contacts">
+      <td> {{ contact.fullName }} </td>
+      <td> {{ contact.phone }} </td>
+      <td> {{ contact.email }} </td>
+      <td > <i (click)="deleteContact(contact)" class="fa fa-user-times fa-lg red-text "></i> &nbsp; <i (click)="updateContact(contact)" class="fa fa-edit fa-lg green-text"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noContacts>
+  <h1> no contacts </h1>
+</ng-template>
