@@ -7,12 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  close = false;
-
-  closeForm(){
-   this.close = false;
-   console.log("changed");
-  }
+  
 
 
 }
